@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link th:href="@{/css/main.css}" rel="stylesheet" />
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous" />
+<title>Candidates</title>
+</head>
+<body>
+
+	<div class="container main-div">
+		<div sec:authorize="isAuthenticated()" class="row">
+			<div class="col-md-auto">
+				<h3 th:text="${'Hi ' + userName}"></h3>
+			</div>
+			<div class="col">
+				<a href="/logout"><button type="button" id="logout-btn" class="btn btn-danger">Logout</button></a>
+			</div>
+		</div>
+
+		<div sec:authorize="!isAuthenticated()">
+			<a href="/login"><button type="button" id="login-button" class="btn btn-success">Login</button></a>
+		</div>
+
+		<br />
+		<div th:switch="${#lists.size(candidates)}">
+			<h2 th:case="0">No candidates yet!</h2>
+			<div th:case="*">
+				<h2>Candidates</h2>
+
+				<div class="row">
+					<div class="col strong">Name</div>
+					<div class="col strong">Score</div>
+					<div class="col"></div>
+				</div>
+
+				<div class="row" style="margin-top: 1px;"
+					th:each="candidate : ${candidates}">
+					<div class="col" th:text="*{candidate.name}"></div>
+					<div class="col" th:text="*{candidate.score}"></div>
+					<div class="col">
+						<a sec:authorize="hasRole('ADMIN') or hasRole('USER')"
+							th:href="@{/update/{id}(id=*{candidate.id})}"><button
+								type="button" class="btn btn-primary">Update</button></a> 
+						<a sec:authorize="hasRole('ADMIN')"
+							th:href="@{/delete/{id}(id=*{candidate.id})}"><button
+								type="button" class="btn btn-danger">Delete</button></a>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div sec:authorize="hasRole('ADMIN')">
+			<a href="/add"><button type="button" class="btn btn-success">Add
+					a new candidate</button></a>
+		</div>
+
+	</div>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+</body>
+</html>
+

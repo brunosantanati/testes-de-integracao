@@ -1,0 +1,10 @@
+CURSO DA UDEMY: TESTES DE INTEGRAÇÃO COM SPRING BOOT
+https://www.udemy.com/course/testes-de-integracao-com-spring-boot/
+
+REPOSITÓRIOS DO CURSO:
+https://github.com/yuri-adeodato/basic-configurations
+https://github.com/yuri-adeodato/databases-jpa
+https://github.com/yuri-adeodato/databases-jdbc
+https://github.com/yuri-adeodato/webLayer
+https://github.com/yuri-adeodato/webLayer-MockMvc
+https://github.com/yuri-adeodato/mvc

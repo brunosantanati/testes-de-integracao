@@ -1,0 +1,16 @@
+body {
+	background-color: #c5c5c5 !important;
+}
+
+.main-div {
+	background-color: #fff !important;
+	padding: 5px;
+}
+
+form div {
+	margin: 5px;
+}
+
+.strong {
+	font-weight: bold;
+}
